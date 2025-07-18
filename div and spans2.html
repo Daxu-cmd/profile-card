@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .profile-card {
+      background-color: #ffffff;
+      border: 2px solid #0077cc;
+      padding: 20px;
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0077cc;
+      margin-bottom: 15px;
+    }
+
+    .name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0077cc;
+      margin-bottom: 5px;
+    }
+
+    .info {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .highlight {
+      color: #e91e63;
+      font-weight: bold;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    .buttons button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-card">
+    <!-- Profile Picture -->
+    <img src="https://www.wane.com/wp-content/uploads/sites/21/2022/07/Cat.jpg?w=876&h=493&crop=1" alt="Profile Picture">
+
+    <!-- Name -->
+    <div class="name">CAT</div>
+
+    <!-- Info -->
+    <div class="info">Age: <span class="highlight">2</span></div>
+    <div class="info">Bio: I love <span class="highlight">Treats</span>!</div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button>Follow Me</button>
+      <button>Contact Me</button>
+    </div>
+  </div>
+</body>
+</html>
