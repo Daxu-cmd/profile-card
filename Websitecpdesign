@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS CORP - Future is Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a0033 25%, #000066 50%, #330066 75%, #0a0a0a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Grid overlay effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Navigation styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff0080;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+            to { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff0080, #00ffff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ff0080;
+            text-shadow: 0 0 10px #ff0080;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff0080, #00ffff, #8000ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGradient 3s ease infinite, glitch 5s infinite;
+        }
+
+        @keyframes textGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0, 0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+            98% { transform: translate(2px, 2px); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: #cccccc;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid #ff0080;
+            color: #ff0080;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            color: #ffffff;
+            box-shadow: 0 0 20px #ff0080, inset 0 0 20px rgba(255, 0, 128, 0.1);
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+
+        .particle:nth-child(odd) {
+            background: #ff0080;
+            animation-duration: 8s;
+        }
+
+        .particle:nth-child(3n) {
+            background: #8000ff;
+            animation-duration: 10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Generate particles with different positions */
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; }
+        .particle:nth-child(10) { left: 15%; animation-delay: 4.5s; }
+
+        /* Login Modal Styles */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .login-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-container {
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+            animation: modalSlideIn 0.5s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff0080, #8000ff, #00ffff);
+            background-size: 200% 200%;
+            border-radius: 12px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 0.5rem;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .login-subtitle {
+            color: #cccccc;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #333333;
+            border-radius: 5px;
+            color: #ffffff;
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff0080;
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
+            background: rgba(255, 0, 128, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #666666;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .form-label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 0 10px;
+            color: #00ffff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-button {
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid #ff0080;
+            color: #ff0080;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .login-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .login-button:hover {
+            color: #ffffff;
+            box-shadow: 0 0 20px #ff0080;
+            text-shadow: 0 0 5px #ffffff;
+            background: rgba(255, 0, 128, 0.1);
+        }
+
+        .login-button:hover::before {
+            left: 100%;
+        }
+
+        .login-button:active {
+            transform: scale(0.98);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ff0080;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ff0080;
+            transform: rotate(90deg);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333333;
+        }
+
+        .forgot-password,
+        .register-link {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .forgot-password:hover,
+        .register-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px #00ffff;
+            transform: translateY(-2px);
+        }
+
+        /* Cyber grid background for login */
+        .login-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            border-radius: 10px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Scanline effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                transparent 50%,
+                rgba(0, 255, 255, 0.03) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: scanlines 0.1s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4px; }
+        }
+
+        /* Glowing border effect */
+        .glow-border {
+            position: relative;
+        }
+
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff0080, #00ffff, #8000ff, #ff0080);
+            background-size: 200% 200%;
+            border-radius: inherit;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .login-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .login-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scanline overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">NEXUS</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#tech" class="nav-link">Technology</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link" id="loginBtn">Login</a></li>
+            </ul>
+            <button class="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Floating particles -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">CYBER FUTURE</h1>
+            <p class="hero-subtitle">
+                Enter the digital realm where technology meets imagination. 
+                Experience the next evolution of human-machine interface.
+            </p>
+            <a href="#access" class="cta-button glow-border">JACK IN NOW</a>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-container">
+            <button class="close-modal" id="closeModal">&times;</button>
+            
+            <div class="login-header">
+                <h2 class="login-title">ACCESS TERMINAL</h2>
+                <p class="login-subtitle">Enter your credentials to jack in</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" placeholder="Enter your handle" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Enter access code" required>
+                </div>
+
+                <button type="submit" class="login-button">INITIALIZE CONNECTION</button>
+            </form>
+
+            <div class="login-footer">
+                <a href="#" class="forgot-password">Forgot Access Code?</a>
+                <br>
+                <a href="#" class="register-link">Request New Account</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Combined functionality for both homepage and login
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginModal = document.getElementById('loginModal');
+            const closeModal = document.getElementById('closeModal');
+            const loginForm = document.getElementById('loginForm');
+
+            // Mobile menu toggle
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Login modal functionality
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                navMenu.classList.remove('active'); // Close mobile menu if open
+            });
+
+            closeModal.addEventListener('click', function() {
+                loginModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside
+            loginModal.addEventListener('click', function(e) {
+                if (e.target === loginModal) {
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && loginModal.classList.contains('active')) {
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Handle login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = loginForm.querySelector('input[type="text"]').value;
+                const password = loginForm.querySelector('input[type="password"]').value;
+                
+                if (username && password) {
+                    const loginButton = loginForm.querySelector('.login-button');
+                    const originalText = loginButton.textContent;
+                    loginButton.textContent = 'CONNECTING...';
+                    loginButton.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        alert('CONNECTION ESTABLISHED\nWelcome to the NEXUS, ' + username + '!');
+                        loginModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        loginForm.reset();
+                        loginButton.textContent = originalText;
+                        loginButton.style.opacity = '1';
+                    }, 2000);
+                }
+            });
+
+            // Close mobile menu when clicking on nav links (except login)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.id !== 'loginBtn') {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') !== '#' && this.id !== 'loginBtn') {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Add glitch effects to hero title
+        function addGlitchEffect() {
+            const title = document.querySelector('.hero-title');
+            const originalText = title.textContent;
+            const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            setInterval(() => {
+                if (Math.random() < 0.1) {
+                    let glitchedText = '';
+                    for (let i = 0; i < originalText.length; i++) {
+                        if (Math.random() < 0.1) {
+                            glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                        } else {
+                            glitchedText += originalText[i];
+                        }
+                    }
+                    title.textContent = glitchedText;
+                    
+                    setTimeout(() => {
+                        title.textContent = originalText;
+                    }, 100);
+                }
+            }, 3000);
+        }
+
+        // Initialize glitch effect
+        addGlitchEffect();
+    </script>
+</body>
+</html>
